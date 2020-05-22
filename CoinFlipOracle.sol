@@ -1,14 +1,17 @@
-contract CoinFlipOracle is usingOraclize {
+pragma solidity > 0.6.1 < 0.7.0;
+
+import "./provableAPI_0.6.sol";
+contract CoinFlipOracle is usingProvable {
   
   string public result;
-  bytes32 public oraclizeID;
+  bytes32 public provableID;
 
   function flipCoin() public payable {
-    oraclizeID = oraclize_query("WolframAlpha", "flip a coin");
+    provableID = provable_query("WolframAlpha", "flip a coin");
   }
 
-  function __callback(bytes32 _oracleID, string _result) public {
-    require(msg.sender == oraclize_sbAddress(), "you are not an oracle")
+  function __callback(bytes32 _provableID, string _result) public {
+    require(msg.sender == provable_sbAddress(), "you are not an oracle")
     result = _result;
   }
 }
