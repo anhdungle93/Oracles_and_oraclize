@@ -10,8 +10,8 @@ contract CoinFlipOracle is usingProvable {
     provableID = provable_query("WolframAlpha", "flip a coin");
   }
 
-  function __callback(bytes32 _provableID, string _result) public {
-    require(msg.sender == provable_sbAddress(), "you are not an oracle")
+  function __callback(bytes32 _provableID, string memory _result) override public {
+    require(msg.sender == provable_cbAddress(), "you are not an oracle");
     result = _result;
   }
 }
