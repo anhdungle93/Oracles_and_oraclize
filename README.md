@@ -1,0 +1,1 @@
+A smart contract (truffle project) employing random number generator offered by the oracle service from Provable.
